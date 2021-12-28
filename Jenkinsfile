@@ -11,6 +11,7 @@ pipeline {
         stage('Example Build') {
             steps {
                 git 'https://github.com/venkatanagarajuj/reduse.git'
+                sh 'git fetch --no-tags --force --progress -- https://github.com/venkatanagarajuj/reduse.git +refs/heads/*:refs/remotes/origin/*'
                checkout([$class: 'GitSCM', branches: [[name: '**']], 
 doGenerateSubmoduleConfigurations: false, 
 extensions: [[$class: 'CheckoutOption', timeout: 20],
