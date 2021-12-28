@@ -1,0 +1,15 @@
+// Jenkinsfile
+// ----------------------------------------------------------------------
+// This example runs the pipeline in a docker container based on
+// Alpine Linux with Open JDK 8
+// ----------------------------------------------------------------------
+pipeline {
+   agent { docker 'openjdk:8-jdk-alpine' }
+   stages {
+      stage('Say Hello') {
+         steps {
+            sh 'java -version'
+         }
+      }
+   }
+}
