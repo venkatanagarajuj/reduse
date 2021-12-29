@@ -15,7 +15,7 @@ pipeline {
                 branches: [[name: '*/master']],
                 doGenerateSubmoduleConfigurations: false,
     extensions: [ [$class: 'RelativeTargetDirectory', relativeTargetDir: hello-world], [$class: 'CloneOption', reference: '/var/lib/gitcache']],
-                 sh "pwd",
+                 ech "test venkat"
 ])
             }
         }
