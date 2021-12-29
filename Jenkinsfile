@@ -17,7 +17,6 @@ pipeline {
                 doGenerateSubmoduleConfigurations: false,
     extensions: [ [$class: 'RelativeTargetDirectory', relativeTargetDir: reponame], [$class: 'CloneOption', reference: '/var/lib/gitcache']],
                 userRemoteConfigs: [[credentialsId: 'none', url: repo_url]
-                sh "set files"
         ]
 
 ])
