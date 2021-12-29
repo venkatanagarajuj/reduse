@@ -7,7 +7,7 @@ pipeline {
    stages {
       stage('Say Hello') {
             steps {
-                git 'https://github.com/ravdy/hello-world.git'
+                git 'https://github.com/venkatanagarajuj/reduse.git'
                 checkout([$class: 'GitSCM',
                 branches: [[name: 'master']],
                 doGenerateSubmoduleConfigurations: false,
