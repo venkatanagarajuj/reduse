@@ -10,14 +10,33 @@ pipeline {
     stages {
         stage('Example Build') {
             steps {
-                git 'https://github.com/ravdy/hello-world.git'
-                checkout([$class: 'GitSCM',
-                branches: [[name: '*/master']],
-                doGenerateSubmoduleConfigurations: false,
-    extensions: [ [$class: 'RelativeTargetDirectory', relativeTargetDir: hello-world], [$class: 'CloneOption', reference: '/var/lib/gitcache']],
-                 ech "test venkat"
-])
+               checkout_from_reference("master")
             }
         }
     }
 }
+
+def checkout_from_reference(commit) {
+    def reponame = "hello-world"
+    def repo_url = "https://github.com/venkatanagarajuj/reduse.git"
+ 
+    echo "Checkout SHA from reference $commit"
+    checkout([
+        $class: 'GitSCM',
+        branches: [[name: commit]],
+        doGenerateSubmoduleConfigurations: false,
+        extensions: [
+            [$class: 'RelativeTargetDirectory', relativeTargetDir: reponame],
+            [$class: 'CloneOption', reference: "/opt/${reponame}"]
+        ],
+        submoduleCfg: [],
+        userRemoteConfigs: [
+            [url: repo_url]
+        ]
+    ])
+    // just to show we are in the right commit:
+    dir(reponame) {
+        sh(script: "git rev-parse HEAD")
+    }
+}
+ 
